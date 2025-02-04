@@ -17,16 +17,16 @@ export const registerController = async (req: Request, res: Response): Promise<R
         const { username, email, password } = req.body;
 
         if (!validateEmail(email)) {
-            return res.status(400).send({
+            return res.status(400).json({
                 status: 'error',
-                msg: 'Formato de correo inválido',
+                message: 'Formato de correo inválido',
             });
         }
 
         if (!validatePassword(password)) {
-            return res.status(400).send({
+            return res.status(400).json({
                 status: 'error',
-                msg: 'La contraseña debe tener más de 8 caracteres',
+                message: 'La contraseña debe tener más de 8 caracteres',
             });
         }
 
@@ -42,7 +42,7 @@ export const registerController = async (req: Request, res: Response): Promise<R
 
         return res.status(201).json({
             status: 'success',
-            message: 'Ha sido registrado exitosamente',
+            message: 'Registro exitoso, ahora puedes iniciar sesión',
             user: {
                 id: user.id_user,
                 username: user.username,
@@ -67,7 +67,7 @@ export const loginController = async (req: Request, res: Response): Promise<Resp
         if (!user) {
             return res.status(400).json({
                 status: 'error',
-                message: 'Email incorrecto',
+                message: 'Correo incorrecto',
             });
         }
 

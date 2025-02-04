@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import userRouter from './routes/user.router';
+import movieRouter from './routes/movie.router';
 import { db } from './config/database';
 
 const app = express();
@@ -9,6 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/users', userRouter);
+app.use('/movies', movieRouter);
 
 const PORT = process.env.PORT || 8080;
 
